@@ -1,0 +1,76 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+\PassOptionsToPackage{numbers, compress}{natbib}
+% before loading nips_2016
+%
+% to avoid loading the natbib package, add option nonatbib:
+% \usepackage[nonatbib]{nips_2016}
+
+% \usepackage{nips_2016}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+\usepackage[final]{nips_2016}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Hi! I Know Where You are Going}
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+\author{
+  Tong Bai\\
+  \texttt{tongb@andrew.cmu.edu} \\
+  %% examples of more authors
+  \And
+  Sai Nihar Tadichetty\\
+  %% Address \\
+  \texttt{ntadiche@andrew.cmu.edu} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+\begin{document}
+% \nipsfinalcopy is no longer used
+
+\maketitle
+
+\begin{abstract}
+  Multiple Object Tracking is a classic but challenging task in the field of computer vision. For general tracking pipe line, people do object detection and align the detected bounding box across frames. During the alignment, beside using appearance feature, most state-of-the-art methods would try to predict the trajectory with motion to boost the accuracy. These predictions could bring further benefit if our application need to take reaction based on future movement, eg. autonomous driving etc. Accurate prediction will earn more time for the motion planning to adapt optimal strategy. In this paper, we proposed an framework using deep learning methods combine with motion prediction to better serve the applications need motion planning based on future movement.
+\end{abstract}
+
+\section{Introduction}
+
+If we say detection and segmentation is about sensing the world, tracking is telling a story, and further more we want to take precautions. Prediction accompanied tracking long before people adapt machine learning, in traditional vision, researchers using optical flow, and Kalman Filter to do encode the motion information and predict based on the previous motion pattern. Later on, Deep Learning make a revolution in vision and gain state-of-the-art result nearly in every recognition related field. A lot of works trying to borrow the wisdom of deep neural network to solve this classic task. Kim et.al \cite{kim2015multiple} proposed a method under the Multi-hypothesis Tracking(MHT) framework, he tries to use Deep CNN to extract appearance feature, plus Kalman Filter to encode the motion information, and use a tracking tree to get the optimal solution. Further more, Alahi propose a "pure machine learning" approach called Social LSTM \cite{Alahi_2016_CVPR} which using a LSTM to encode the position information and predict the future trajectory. But both problem are not really suitable for real-time prediction with moving camera. For MHT, the biggest advantage is it allow tracing back to find the optimal solution and correct its most recent mistakes, which also means without knowing the following frames, the current solution might not be optimal. For Social LSTM, the experiments setting are all with static cameras, we don't know how it will work with moving cameras, and the possibility of applying this technique to applications like drone or autonomous vehicle.  In this paper, we aiming to experiment and modified the existing tracking/motion prediction methods on real world drone navigating or autonomous driving problems, in order to help accurate motion planning in those applications.
+
+\bibliographystyle{IEEEtran}
+\bibliography{egbib}
+\end{document}
