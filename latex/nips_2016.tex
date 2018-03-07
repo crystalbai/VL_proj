@@ -19,7 +19,6 @@
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
-\usepackage{microtype}      % microtypography
 
 \title{Hi! I Know Where You are Going}
 
@@ -60,19 +59,27 @@
 
 \begin{document}
 % \nipsfinalcopy is no longer used
-
 \maketitle
-
-\begin{abstract}
-  Multiple Object Tracking is a classic but challenging task in the field of computer vision. For general tracking pipe line, people do object detection and align the detected bounding box across frames. During the alignment, beside using appearance feature, most state-of-the-art methods would try to predict the trajectory with motion to boost the accuracy. These predictions could bring further benefit if our application need to take reaction based on future movement, eg. autonomous driving etc. Accurate prediction will earn more time for the motion planning to adapt optimal strategy. In this paper, we proposed an framework using deep learning methods combine with motion prediction to better serve the applications need motion planning based on future movement.
-\end{abstract}
-
-\section{Introduction}
-
-If we say detection and segmentation is about sensing the world, tracking is telling a story, and further more we want to take precautions. Prediction accompanied tracking long before people adapt machine learning, in traditional vision, researchers using optical flow, and Kalman Filter to do encode the motion information and predict based on the previous motion pattern. Later on, Deep Learning make a revolution in vision and gain state-of-the-art result nearly in every recognition related field. A lot of works trying to borrow the wisdom of deep neural network to solve this classic task. Kim et.al \cite{kim2015multiple} proposed a method under the Multi-hypothesis Tracking(MHT) framework, he tries to use Deep CNN to extract appearance feature, plus Kalman Filter to encode the motion information, and use a tracking tree to get the optimal solution. Further more, Alahi propose a "pure machine learning" approach called Social LSTM \cite{Alahi_2016_CVPR} which using a LSTM to encode the position information and predict the future trajectory. But both problem are not really suitable for real-time prediction with moving camera. For MHT, the biggest advantage is it allow tracing back to find the optimal solution and correct its most recent mistakes, which also means without knowing the following frames, the current solution might not be optimal. For Social LSTM, the experiments setting are all with static cameras, we don't know how it will work with moving cameras, and the possibility of applying this technique to applications like drone or autonomous vehicle.  In this paper, we aiming to experiment and modified the existing tracking/motion prediction methods on real world drone navigating or autonomous driving problems, in order to help accurate motion planning in those applications.
+%\begin{abstract}
+%  Multiple Object Tracking is a classic but challenging task in the field of computer vision. For general tracking pipe line, people do object detection and align the detected bounding box across frames. During the alignment, beside using appearance feature, most state-of-the-art methods would try to predict the trajectory with motion to boost the accuracy. These predictions could bring further benefit if our application need to take reaction based on future movement, eg. autonomous driving etc. Accurate prediction will earn more time for the motion planning to adapt optimal strategy. In this paper, we proposed an framework using deep learning methods combine with motion prediction to better serve the applications need motion planning based on future movement.
+%\end{abstract}
+%
+%\section{Introduction}
+%
+%If we say detection and segmentation is about sensing the world, tracking is telling a story, and further more we want to take precautions. Prediction accompanied tracking long before people adapt machine learning, in traditional vision, researchers using optical flow, and Kalman Filter to do encode the motion information and predict based on the previous motion pattern. Later on, Deep Learning make a revolution in vision and gain state-of-the-art result nearly in every recognition related field. A lot of works trying to borrow the wisdom of deep neural network to solve this classic task. Kim et.al \cite{kim2015multiple} proposed a method under the Multi-hypothesis Tracking(MHT) framework, he tries to use Deep CNN to extract appearance feature, plus Kalman Filter to encode the motion information, and use a tracking tree to get the optimal solution. Further more, Alahi propose a "pure machine learning" approach called Social LSTM \cite{Alahi_2016_CVPR} which using a LSTM to encode the position information and predict the future trajectory. But both problem are not really suitable for real-time prediction with moving camera. For MHT, the biggest advantage is it allow tracing back to find the optimal solution and correct its most recent mistakes, which also means without knowing the following frames, the current solution might not be optimal. For Social LSTM, the experiments setting are all with static cameras, we don't know how it will work with moving cameras, and the possibility of applying this technique to applications like drone or autonomous vehicle.  In this paper, we aiming to experiment and modified the existing tracking/motion prediction methods on real world drone navigating or autonomous driving problems, in order to help accurate motion planning in those applications.
+\vspace*{-5mm}
+\section{Motivation}
+Detection and segmentation approaches in computer vision are all about sensing the world and interpreting the details captured in a scene. While these are great at understanding the scene, tracking algorithms are what add life to it; they not only tell you what is in the scene but also allow you to predict their states based on previous motion patterns.  This has interesting applications in land and aerial locomotive industries as tracking can allow machines to have a true sense of what is happening around them. A version of this is being used in autonomous driving cars and now we would like to extend this to aerial vehicle safety. 
+\section{Approach}
+Multiple Object Tracking is a classic but challenging task in the field of computer vision. Traditionally, researchers used optical flow and Kalmann filter methods to encode motion information and predict the next state using previous motion patterns. With the advent of deep learning methods that revolutionized the world of computer vision, many researchers proposed ways for tracking which are highly efficient compared to their traditional counter parts. Kim et.al’s Multi-hypothesis Tracking (MHT) framework \cite{kim2015multiple} , Alahi’s “pure machine learning” approach also called Social LSTM  \cite{Alahi_2016_CVPR} are some works in this field which produced promising results. However, neither of these are fast and therefore cannot be applied to real-time tracking. 
+In this project, we are planning to experiment and modify existing motion tracking and prediction methods to produce a fast tracking system that can be used to address motion planning problems in autonomous vehicle systems. 
+Right now we are looking at branching off from Mask RCNN to another LSTM network that will allow us to implement our tracking algorithm on in. We are also looking into “Learning to Track at 100 FPS with Deep Regression Networks” by David Held \cite{held2016learning}. We haven’t zeroed down on what method we will be implementing, but this is the approach we are looking at currently.
 
 \section{Work designation}
-Tong has experience about object tracking before, who will go through previous work of motion prediction and tracking, and set up experiment environment. Nihar works with robotics, who will collect and process the real-world dataset and also doing data processing on the exist bench marks. Both of us will discuss and doing experiments of new algorithm to solve our particular problem. 
-\bibliographystyle{IEEEtran}
-\bibliography{egbib}
+Tong has experience about object tracking before, who will go through previous work of motion prediction and tracking, and set up experiment environment. Nihar works with robotics, who will collect and process the real-world dataset and also doing data processing on the exist bench marks. Both of us will discuss and doing experiments of new algorithm to solve our particular problem.
+\small{
+	\bibliographystyle{IEEEtran}
+	\bibliography{egbib}
+} 
+
 \end{document}
